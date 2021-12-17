@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+# Project Overview
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
+## Project Schedule
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+|  Day | Deliverable | Status
+|---|---| ---|
+|Day 1| Project Description | Complete
+|Day 1| Wireframes / Priority Matrix / Timeline | Complete
+|Day 2-4| Core Application Structure (HTML, CSS, etc.) | Incomplete
+|Day 5-6| MVP & Bug Fixes | Incomplete
+|Day 6-7| Final Touches | Incomplete
+|Day 8| Present | Incomplete
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Project Description
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Test your knowledge of js/front-end with this quiz app. This app will be created using React for frontend and Django for backend. Users will be able to create new questions and add to the quiz.
 
-### `npm run build`
+## Wireframes
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [Link](https://res.cloudinary.com/orawee/image/upload/v1639714967/QuizJS/Screen_Shot_2021-12-16_at_8.21.48_PM_dxusqh.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## V1, V2, V3
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+#### V1
+- The quiz will function and display results.
+#### V2
+- User will be able to add their own questions to the quiz.
+#### V3
+- User will be able to view all their past results.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### MVP
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Content, Layout, Structure
+- Setting up questions on backend
+- Fetching data for quiz questions
+- Fetching data for user results
+- Adding login for user auth
+- CSS
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+#### PostMVP 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- User creation of questions
+- Past results page for user
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+## Functional Components
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### MVP
+| Component | Priority | Estimated Time | Actual Time |
+| --- | :---: |  :---: | :---: | 
+| WireFraming | H | 2hr |  hr |
+| Content, Layout, Structure | H | 4hr |  hr |  
+| Build RESTful API| H | 5hr |  hr |  
+| Quiz Intro (Selection: Category, Difficulty) | H | 4hr |  hr|
+| Questions (Set up question format) | H | 5hr |  hr|
+| Results Page | H | 3hr|  hr |  
+| CSS | M | 4hrs|  hr | 
+| Total | H | 28 hrs|  hrs |
 
-### Analyzing the Bundle Size
+#### PostMVP
+| Component | Priority | Estimated Time | Actual Time |
+| --- | :---: |  :---: | :---: | 
+| User Question Addition | H | 7hr |  hr|
+| User Past Results | M | 5hr | - hr | - hr |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+| Total | H | 12 hrs|  hrs |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Additional Libraries
+TBD
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Issues and Resolutions
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
