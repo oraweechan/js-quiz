@@ -23,10 +23,10 @@ function Question(props) {
 
   
 
-  const questions = props.dataList.map((quiz, index) =>{
-    const options = props.dataList.incorrectAnswers.map((incorrectAnswers) => {
+  const questions = props.questions.map((quiz, index) =>{
+    const options = props.questions.options.map((options) => {
       const choices = [];
-      choices.push(incorrectAnswers)
+      choices.push(options)
       return(
         <Box m={2}>
           <Button variant="contained" sx={{display:'block', margin:'0 auto', textAlign:'center', }} >{choices}</Button>

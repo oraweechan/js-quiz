@@ -1,5 +1,3 @@
-
-import Intro from "./screens/Start";
 import Question from "./screens/Question";
 import Result from "./screens/Result";
 import { Routes, Route } from "react-router-dom";
@@ -18,18 +16,48 @@ function App() {
 
   const [questions, setQuestions] = useState([]);
   const questionCollection = collection(db, "questions");
+  const quizCollection = collection(db, "quizzes");
+  const hardCollection = collection(db, "hard_questions");
+
   const [userData, setUserData] = useState({
     token: undefined,
     user: undefined,
   });
 
-  useEffect(() => {
-    const APIcall = async () => {
+  // useEffect(() => {
+  //   const apiCall = async () => {
+  //     const data = await getDocs(questionCollection);
+  //     console.log(data.docs)
+
+  //     setQuestions(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  //   };
+  //   apiCall();
+  // }, []);
+
+  const apiCall = async (difficulty = "") => {
+    console.log(difficulty)
+    if (difficulty == "easy") {
       const data = await getDocs(questionCollection);
-      setQuestions(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
-    APIcall();
-  }, []);
+      console.log(data.docs)
+       setQuestions(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+    }
+    else if (difficulty == "medium") {
+      const data = await getDocs(quizCollection);
+      console.log(data.docs)
+       setQuestions(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+    }
+    else if (difficulty == "hard") {
+      const data = await getDocs(hardCollection);
+      console.log(data.docs)
+       setQuestions(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+    }
+    
+  };
+  // const apiCall = async () => {
+  //       const data = await getDocs(questionCollection);
+  //       console.log(data.docs)
+  //       setQuestions(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  //     };
 
 
 
@@ -44,8 +72,7 @@ function App() {
           <Routes>
             <Route path="/" element={<SignIn />} />
             <Route path="signup" element={<SignUp />} />
-            <Route path="home" element={<Home questions={questions}/>} />
-            <Route path="start" element={<Intro />} />
+            <Route path="home" element={<Home apiCall={apiCall} questions={questions}/>} />
             <Route path="play" element={<Question questions={questions} />} />
             <Route path="results" element={<Result />} />
           </Routes>

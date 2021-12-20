@@ -14,15 +14,15 @@ function Home(props) {
 
 
     const handleSubmit = () => {
+        // console.log({difficulty})
         if (!difficulty) {
           setError(true);
           return;
         } else {
           setError(false);
-        //   fetchQuestions(category, difficulty);
-          navigate('/play');
-        }
-      };
+          props.apiCall(difficulty);
+        //   navigate('/play');
+      }};
   
   
     return (
