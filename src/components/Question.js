@@ -5,7 +5,6 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 function Question(props) {
-
   const [selected, setSelected] = useState();
   const [error, setError] = useState(false);
   const navigate = useNavigate();
@@ -24,7 +23,9 @@ function Question(props) {
 
   const handleNext = () => {
     if (props.currQues > props.questions.length - 2) {
-      navigate("/result");
+      if (selected) {
+        navigate("/result");
+      } else setError("Please select an option first");
     } else if (selected) {
       props.setCurrQues(props.currQues + 1);
       setSelected();
@@ -46,7 +47,7 @@ function Question(props) {
           {props.quizOptions &&
             props.quizOptions.map((options) => (
               <button
-            //   check if selected, if selected call handleSelect. 
+                //   check if selected, if selected call handleSelect.
                 className={`singleOption  ${selected && handleSelect(options)}`}
                 key={options}
                 onClick={() => handleCheck(options)}
@@ -74,7 +75,9 @@ function Question(props) {
             style={{ width: 185 }}
             onClick={handleNext}
           >
-            {props.currQues > props.questions.length - 2 ? "Submit" : "Next Question"}
+            {props.currQues > props.questions.length - 2
+              ? "Submit"
+              : "Next Question"}
           </Button>
         </div>
       </div>
