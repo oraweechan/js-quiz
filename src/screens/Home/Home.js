@@ -2,7 +2,7 @@ import { MenuItem, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { Button } from "@mui/material";
 import {useNavigate} from "react-router-dom";
-import ErrorMessage from "./ErrorMessage";
+import ErrorMessage from "../../components/ErrorMessage";
 
 import "./Home.css";
 

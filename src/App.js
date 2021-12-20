@@ -1,5 +1,5 @@
-import Quiz from "./screens/Quiz";
-import Result from "./screens/Result";
+import Quiz from "./screens/Quiz/Quiz";
+import Result from "./screens/Result/Result";
 import { Routes, Route } from "react-router-dom";
 import UserContext from "./screens/auth/userContext";
 import React, { useState, useEffect } from "react";
@@ -10,7 +10,7 @@ import { Container, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import SignIn from "./screens/auth/SignIn";
 import SignUp from "./screens/auth/SignUp";
-import Home from "./screens/Home";
+import Home from "./screens/Home/Home";
 
 function App() {
   const [questions, setQuestions] = useState([]);
@@ -52,6 +52,8 @@ function App() {
     }
   };
 
+  // console.log(questions.length)
+
   return (
     <UserContext.Provider value={{ userData, setUserData }}>
       <Container maxWidth="sm">
@@ -78,7 +80,7 @@ function App() {
                 />
               }
             />
-            <Route path="results" element={<Result />} />
+            <Route path="result" element={<Result score={score}/>} />
           </Routes>
         </Box>
       </Container>

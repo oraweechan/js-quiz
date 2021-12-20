@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button, CircularProgress, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import "./Quiz.css";
+import Question from "../../components/Question";
 
 
 function Quiz(props) {
@@ -16,7 +17,7 @@ function Quiz(props) {
       // check for questions and shuffle options
       props.questions && handleShuffle(props.questions[currQues]?.options)
     );
-  }, [props.questions]);
+  }, [currQues, props.questions]);
 
   
 
@@ -24,7 +25,7 @@ function Quiz(props) {
     return options?.sort(() => Math.random() - 0.5);
   };
 
-  console.log(quizOptions);
+  // console.log(quizOptions);
 
   // const questions = props.questions.map((quiz, index) =>{
   //   const options = props.quiz.options.map((options) => {
@@ -49,13 +50,26 @@ function Quiz(props) {
 
   return (
     <div className="Quiz">
-      <span className="subtitle">Welcome, name</span>
+      {/* <span className="subtitle">Welcome, name</span> */}
       {quizOptions ? (
         <>
         <div className="quizInfo">
-          <span>{props.questions[currQues].difficulty}</span>
+          {/* <span>{props.questions[currQues].difficulty}</span> */}
           <span>Score: {props.score}</span>
         </div>
+
+        <Question 
+          currQues={currQues}
+          setCurrQues={setCurrQues}
+          questions={props.questions}
+          quizOptions={quizOptions}
+          score={props.score}
+          setScore={props.setScore}
+          setQuestions={props.setQuestions}
+          correct={props.questions[currQues]?.correct_option}
+
+
+        />
         
         </>
       ): (
