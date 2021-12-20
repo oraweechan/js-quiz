@@ -121,7 +121,7 @@ function SignUp() {
                     size="large"
                     type="submit"
                   >
-                    Create Account
+                    Submit
                   </Button>
                 </Form>
               </Col>

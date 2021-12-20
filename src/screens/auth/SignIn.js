@@ -20,7 +20,7 @@ function Login() {
   const { setUserData } = useContext(UserContext);
 
   const navigate = useNavigate();
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -34,7 +34,7 @@ function Login() {
         user: loginResponse.data.user,
       });
       localStorage.setItem("auth-token", loginResponse.data.token);
-      navigate("/feed");
+      navigate("/play");
     } 
     catch (err) {
       err.response.data.msg && setError(err.response.data.msg);
@@ -53,7 +53,7 @@ function Login() {
               <Row className="justify-content-md-center">
                 <Col sm={12}>
                   <Typography fontFamily="'Poppins', sans-serif">
-                    <h2>Sign in to Travelgram</h2>
+                    <h2>Sign In</h2>
                   </Typography>
                   {/* {error && (
                     <ErrorNotice
@@ -102,7 +102,7 @@ function Login() {
                       size="large"
                       type="submit"
                     >
-                      Sign In
+                      Submit
                     </Button>
                     {/* <Button
                       style={{ backgroundColor: "#1A76D2" }}
@@ -121,7 +121,7 @@ function Login() {
               className="w-responsive text-center mx-auto p-3 mt-4"
               elevation={3}
             >
-              <p>New to Travelgram?</p>
+              <p>New to QuizJS?</p>
 
               <Link style={linkStyle} to="/signup">
                 <Button
