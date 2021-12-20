@@ -21,7 +21,7 @@ function Home(props) {
         } else {
           setError(false);
           props.apiCall(difficulty);
-        //   navigate('/play');
+          navigate('/play');
       }};
   
   

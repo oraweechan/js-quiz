@@ -1,4 +1,4 @@
-import Question from "./screens/Question";
+import Quiz from "./screens/Quiz";
 import Result from "./screens/Result";
 import { Routes, Route } from "react-router-dom";
 import UserContext from "./screens/auth/userContext";
@@ -13,8 +13,9 @@ import SignUp from "./screens/auth/SignUp";
 import Home from "./screens/Home";
 
 function App() {
-
   const [questions, setQuestions] = useState([]);
+  const [score, setScore] = useState(0);
+
   const questionCollection = collection(db, "questions");
   const quizCollection = collection(db, "quizzes");
   const hardCollection = collection(db, "hard_questions");
@@ -35,52 +36,53 @@ function App() {
   // }, []);
 
   const apiCall = async (difficulty = "") => {
-    console.log(difficulty)
+    // console.log(difficulty)
     if (difficulty == "easy") {
       const data = await getDocs(questionCollection);
-      console.log(data.docs)
-       setQuestions(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-    }
-    else if (difficulty == "medium") {
+      // console.log(data.docs)
+      setQuestions(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    } else if (difficulty == "medium") {
       const data = await getDocs(quizCollection);
-      console.log(data.docs)
-       setQuestions(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-    }
-    else if (difficulty == "hard") {
+      // console.log(data.docs)
+      setQuestions(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    } else if (difficulty == "hard") {
       const data = await getDocs(hardCollection);
-      console.log(data.docs)
-       setQuestions(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+      // console.log(data.docs)
+      setQuestions(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     }
-    
   };
-  // const apiCall = async () => {
-  //       const data = await getDocs(questionCollection);
-  //       console.log(data.docs)
-  //       setQuestions(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  //     };
-
-
 
   return (
     <UserContext.Provider value={{ userData, setUserData }}>
       <Container maxWidth="sm">
         <Box textAlign="center" mt={5}>
           <Typography variant="h2" fontWeight="bold">
-                    Quiz JS
+            Quiz JS
           </Typography>
 
           <Routes>
             <Route path="/" element={<SignIn />} />
             <Route path="signup" element={<SignUp />} />
-            <Route path="home" element={<Home apiCall={apiCall} questions={questions}/>} />
-            <Route path="play" element={<Question questions={questions} />} />
+            <Route
+              path="home"
+              element={<Home apiCall={apiCall} questions={questions} />}
+            />
+            <Route
+              path="play"
+              element={
+                <Quiz
+                  score={score}
+                  setScore={setScore}
+                  setQuestions={setQuestions}
+                  questions={questions}
+                />
+              }
+            />
             <Route path="results" element={<Result />} />
           </Routes>
-
         </Box>
       </Container>
     </UserContext.Provider>
- 
   );
 }
 
