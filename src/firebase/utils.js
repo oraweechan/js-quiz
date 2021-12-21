@@ -1,7 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { doc, getFirestore } from "@firebase/firestore";
 import {getAuth} from "firebase/auth";
-import firebase from 'firebase/compat/app';
 
 
 
@@ -19,9 +18,8 @@ const app = initializeApp(firebaseConfig);
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
 
-  console.log(firestore.doc('users'))
 
-  const userRef = doc(`users, ${userAuth.uid}`);
+  const userRef = doc(db, `users/${userAuth.uid}`);
 
   const snapShot = await userRef.get();
 

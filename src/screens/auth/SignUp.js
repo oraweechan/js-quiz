@@ -10,16 +10,16 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   createUserWithEmailAndPassword,
-  onAuthStateChanged,
+  updateProfile,
+  getAuth,
 } from "firebase/auth";
-import { auth, createUserProfileDocument } from "../../firebase/utils";
-
-
-
-const linkStyle = {
-  textDecoration: "none",
-  color: "white",
-};
+import { auth, db } from "../../firebase/utils";
+import {
+  collection,
+  doc,
+  addDoc,
+  setDoc
+} from "firebase/firestore";
 
 function SignUp() {
   const [email, setEmail] = useState();
@@ -30,39 +30,15 @@ function SignUp() {
 
   const navigate = useNavigate();
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const newUser = { email, password, displayName };
-  //   try {
-      
-  //     const { user } = await auth.createUserWithEmailAndPassword(
-  //       email,
-  //       password
-  //     );
-  //     await createUserProfileDocument(user, { displayName });
-      
-  //     setUserData({
-  //       token: loginResponse.data.token,
-  //       user: loginResponse.data.user,
-  //     });
-  //     localStorage.setItem("auth-token", loginResponse.data.token);
-  //     navigate("/feed");
-  //   } catch (err) {
-  //     err.response.data.msg && setError(err.response.data.msg);
-  //   }
-  // };
-
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      const user = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      await createUserProfileDocument(user, {displayName});
-      console.log(user);
-      navigate("/home");
+      const user = await createUserWithEmailAndPassword(auth, email, password);
+      await setDoc(doc(db, "users", user.user.uid), {
+        email: email,
+        displayName: displayName,
+        uid: user.user.uid,
+      });
     } catch (error) {
       console.log(error.message);
     }
@@ -79,7 +55,7 @@ function SignUp() {
             >
               <Col sm={12}>
                 <Typography fontFamily="'Poppins', sans-serif">
-                  <h2>Create an Account</h2>
+                  Create an Account
                 </Typography>
                 {/* {error && (
                   <ErrorNotice
@@ -105,7 +81,6 @@ function SignUp() {
                       />
                     </Col>
                   </Form.Group>
-
 
                   <Col sm="12">
                     <TextField
@@ -150,17 +125,14 @@ function SignUp() {
               elevation={3}
             >
               <p>Already have an account?</p>
-              <Link style={linkStyle} to="/signup">
-                <Button
-                  style={{ backgroundColor: "#1A76D2" }}
-                  variant="contained"
-                  size="medium"
-                >
-                  <Link style={linkStyle} to="/">
-                    Sign In
-                  </Link>
-                </Button>
-              </Link>
+              <Button
+                href="/"
+                style={{ backgroundColor: "#1A76D2" }}
+                variant="contained"
+                size="medium"
+              >
+                Sign In
+              </Button>
             </Paper>
           </Col>
         </Row>

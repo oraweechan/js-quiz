@@ -5,6 +5,7 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 function Question(props) {
+  
   const [selected, setSelected] = useState();
   const [error, setError] = useState(false);
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ function Question(props) {
     if (props.currQues > props.questions.length - 2) {
       if (selected) {
         navigate("/result");
+
       } else setError("Please select an option first");
     } else if (selected) {
       props.setCurrQues(props.currQues + 1);

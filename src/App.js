@@ -2,9 +2,11 @@ import Quiz from "./screens/Quiz/Quiz";
 import Result from "./screens/Result/Result";
 import { Routes, Route } from "react-router-dom";
 import UserContext from "./screens/auth/userContext";
-import React, { useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import React, { useState, useEffect } from "react";
+import { collection, getDocs,where,
+  query, } from "firebase/firestore";
 import { db, auth } from "../src/firebase/utils";
+import { useNavigate } from "react-router-dom";
 
 import { Container, Typography } from "@mui/material";
 import { Box } from "@mui/system";
@@ -12,24 +14,19 @@ import SignIn from "./screens/auth/SignIn";
 import SignUp from "./screens/auth/SignUp";
 import Home from "./screens/Home/Home";
 
-import { useAuthState } from 'react-firebase-hooks/auth';
-import {
-  
-  signOut
-} from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { signOut } from "firebase/auth";
+import { ref, onValue} from "firebase/database";
+import Header from "./components/Header";
 
 
 
 function App() {
-
   const [user] = useAuthState(auth);
+  const [displayName, setDisplayName] = useState([]);
+
 
  
-
-  const logout = async () => {
-    await signOut(auth);
-  };
-
 
   const [questions, setQuestions] = useState([]);
   const [score, setScore] = useState(0);
@@ -38,67 +35,63 @@ function App() {
   const quizCollection = collection(db, "quizzes");
   const hardCollection = collection(db, "hard_questions");
 
-  // const [user, setUser] = useState({});
-
-  // useEffect(() => {
-  //   const apiCall = async () => {
-  //     const data = await getDocs(questionCollection);
-  //     console.log(data.docs)
-
-  //     setQuestions(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  //   };
-  //   apiCall();
-  // }, []);
-
   const apiCall = async (difficulty = "") => {
-    // console.log(difficulty)
     if (difficulty == "easy") {
       const data = await getDocs(questionCollection);
-      // console.log(data.docs)
       setQuestions(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     } else if (difficulty == "medium") {
       const data = await getDocs(quizCollection);
-      // console.log(data.docs)
       setQuestions(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     } else if (difficulty == "hard") {
       const data = await getDocs(hardCollection);
-      // console.log(data.docs)
       setQuestions(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     }
   };
 
-  // console.log(questions.length)
+  useEffect(() => {
+    const getUser = async () => {
+        const q = query(collection(db, "users"), where("email", "==", user.email));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.id, " => ", doc.data());
+          setDisplayName(doc.data().displayName)
+        });
+    };
+    getUser();
+  }, [user]);
 
   return (
     // <UserContext.Provider value={{ user, setUser }}>
-      <Container maxWidth="sm">
-        <Box textAlign="center" mt={5}>
-          <Typography variant="h2" fontWeight="bold">
-            Quiz JS
-          </Typography>
+    <Container maxWidth="sm">
+      <Box textAlign="center" mt={5}>
 
-          <Routes>
-            <Route path="/" element={<SignIn />} />
-            <Route path="signup" element={<SignUp />} />
-            <Route
-              path="home"
-              element={<Home apiCall={apiCall} questions={questions} />}
-            />
-            <Route
-              path="play"
-              element={
-                <Quiz
-                  score={score}
-                  setScore={setScore}
-                  setQuestions={setQuestions}
-                  questions={questions}
-                />
-              }
-            />
-            <Route path="result" element={<Result score={score}/>} />
-          </Routes>
-        </Box>
-      </Container>
+        <Header displayName={displayName} user={user}  />
+        <Routes>
+          <Route path="/" element={<SignIn user={user} />} />
+          <Route path="signup" element={<SignUp user={user} />} />
+          <Route
+            path="home"
+            element={
+              <Home user={user} apiCall={apiCall} questions={questions} />
+            }
+          />
+          <Route
+            path="play"
+            element={
+              <Quiz
+                user={user}
+                score={score}
+                setScore={setScore}
+                setQuestions={setQuestions}
+                questions={questions}
+              />
+            }
+          />
+          <Route path="result" element={<Result user={user} score={score} setScore={setScore}/>} />
+        </Routes>
+      </Box>
+    </Container>
     // </UserContext.Provider>
   );
 }

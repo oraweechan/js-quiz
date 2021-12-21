@@ -3,24 +3,29 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import "./Result.css";
 
-const Result = ({ name, score }) => {
+const Result = (props) => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (name) {
-      navigate("/home");
-    }
-  }, [name, navigate]);
+  const handleSubmit =  () => {
+    const q = query(collection(db, "users"), where("displayName", "==", props.displayName));
+    props.setScore(0);
+
+    navigate("/home")
+  };
+
 
   return (
     <div className="result">
-      <span className="title">Final Score : {score}</span>
+      <span className="title">Final Score : {props.score}</span>
+      <div className="resultInfo">
+
+      </div>
       <Button
         variant="contained"
         color="secondary"
         size="large"
         style={{ alignSelf: "center", marginTop: 20 }}
-        href="/home"
+        onClick={handleSubmit}
       >
         Go to homepage
       </Button>
