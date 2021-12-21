@@ -5,7 +5,7 @@ import TextField from "@mui/material/TextField";
 import React, { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import UserContext from "./userContext";
+import { auth } from "../../firebase/utils";
 
 const linkStyle = {
   textDecoration: "none",
@@ -17,28 +17,28 @@ function Login() {
   const [password, setPassword] = useState();
   const [error, setError] = useState();
 
-  const { setUserData } = useContext(UserContext);
+  // const { setUserData } = useContext(UserContext);
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const loginUser = { email, password };
-      const loginResponse = await axios.post(
-        "https://travelgram-app-heroku.herokuapp.com/users/login",
-        loginUser
-      );
-      setUserData({
-        token: loginResponse.data.token,
-        user: loginResponse.data.user,
-      });
-      localStorage.setItem("auth-token", loginResponse.data.token);
-      navigate("/play");
-    } 
-    catch (err) {
-      err.response.data.msg && setError(err.response.data.msg);
-    }
+    // e.preventDefault();
+    // try {
+    //   const loginUser = { email, password };
+    //   const loginResponse = await axios.post(
+    //     "https://travelgram-app-heroku.herokuapp.com/users/login",
+    //     loginUser
+    //   );
+    //   setUserData({
+    //     token: loginResponse.data.token,
+    //     user: loginResponse.data.user,
+    //   });
+    //   localStorage.setItem("auth-token", loginResponse.data.token);
+    //   navigate("/play");
+    // } 
+    // catch (err) {
+    //   err.response.data.msg && setError(err.response.data.msg);
+    // }
   };
 
   return (

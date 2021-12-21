@@ -8,9 +8,13 @@ import { TextField } from "@mui/material";
 
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import UserContext from "./userContext";
-// import ErrorNotice from "./ErrorNotice";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+} from "firebase/auth";
+import { auth, createUserProfileDocument } from "../../firebase/utils";
+
+
 
 const linkStyle = {
   textDecoration: "none",
@@ -20,32 +24,47 @@ const linkStyle = {
 function SignUp() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [name, setName] = useState();
-  const [username, setUsername] = useState();
+  const [displayName, setDisplayName] = useState();
   const [error, setError] = useState();
-  const { setUserData } = useContext(UserContext);
+  // const { setUserData } = useContext(UserContext);
 
   const navigate = useNavigate();
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const newUser = { email, password, displayName };
+  //   try {
+      
+  //     const { user } = await auth.createUserWithEmailAndPassword(
+  //       email,
+  //       password
+  //     );
+  //     await createUserProfileDocument(user, { displayName });
+      
+  //     setUserData({
+  //       token: loginResponse.data.token,
+  //       user: loginResponse.data.user,
+  //     });
+  //     localStorage.setItem("auth-token", loginResponse.data.token);
+  //     navigate("/feed");
+  //   } catch (err) {
+  //     err.response.data.msg && setError(err.response.data.msg);
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
-      const newUser = { email, password, name, username };
-      await axios.post("https://travelgram-app-heroku.herokuapp.com/users/signup", newUser);
-      const loginResponse = await axios.post(
-        "https://travelgram-app-heroku.herokuapp.com/users/login",
-        {
-          email,
-          password,
-        }
+      const user = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
       );
-      setUserData({
-        token: loginResponse.data.token,
-        user: loginResponse.data.user,
-      });
-      localStorage.setItem("auth-token", loginResponse.data.token);
-      navigate("/feed");
-    } catch (err) {
-      err.response.data.msg && setError(err.response.data.msg);
+      await createUserProfileDocument(user, {displayName});
+      console.log(user);
+      navigate("/home");
+    } catch (error) {
+      console.log(error.message);
     }
   };
 
@@ -92,7 +111,7 @@ function SignUp() {
                     <TextField
                       required
                       fullWidth
-                      onChange={(e) => setUsername(e.target.value)}
+                      onChange={(e) => setDisplayName(e.target.value)}
                       name="username"
                       label="Username"
                     />

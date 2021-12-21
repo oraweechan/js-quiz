@@ -2,9 +2,9 @@ import Quiz from "./screens/Quiz/Quiz";
 import Result from "./screens/Result/Result";
 import { Routes, Route } from "react-router-dom";
 import UserContext from "./screens/auth/userContext";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../src/firebase/utils";
+import { db, auth } from "../src/firebase/utils";
 
 import { Container, Typography } from "@mui/material";
 import { Box } from "@mui/system";
@@ -12,7 +12,25 @@ import SignIn from "./screens/auth/SignIn";
 import SignUp from "./screens/auth/SignUp";
 import Home from "./screens/Home/Home";
 
+import { useAuthState } from 'react-firebase-hooks/auth';
+import {
+  
+  signOut
+} from "firebase/auth";
+
+
+
 function App() {
+
+  const [user] = useAuthState(auth);
+
+ 
+
+  const logout = async () => {
+    await signOut(auth);
+  };
+
+
   const [questions, setQuestions] = useState([]);
   const [score, setScore] = useState(0);
 
@@ -20,10 +38,7 @@ function App() {
   const quizCollection = collection(db, "quizzes");
   const hardCollection = collection(db, "hard_questions");
 
-  const [userData, setUserData] = useState({
-    token: undefined,
-    user: undefined,
-  });
+  // const [user, setUser] = useState({});
 
   // useEffect(() => {
   //   const apiCall = async () => {
@@ -55,7 +70,7 @@ function App() {
   // console.log(questions.length)
 
   return (
-    <UserContext.Provider value={{ userData, setUserData }}>
+    // <UserContext.Provider value={{ user, setUser }}>
       <Container maxWidth="sm">
         <Box textAlign="center" mt={5}>
           <Typography variant="h2" fontWeight="bold">
@@ -84,7 +99,7 @@ function App() {
           </Routes>
         </Box>
       </Container>
-    </UserContext.Provider>
+    // </UserContext.Provider>
   );
 }
 
