@@ -19,11 +19,13 @@ function SignIn({user}) {
         email,
         password
       );
-      navigate("/home");
+      navigate("/quizJS/home");
     } catch (error) {
       console.log(error.message);
     }
   };
+
+  const handleClick = () => {navigate("/quizJS/signup")}
 
   return (
     <>
@@ -32,7 +34,6 @@ function SignIn({user}) {
       <h3>Sign In</h3>
       <Box>
       <TextField
-
           size="small"      
           placeholder="Email..."
           onChange={(event) => {
@@ -54,7 +55,7 @@ function SignIn({user}) {
         <span>New to QuizJS?</span>
 
             <Button
-              href="signup"
+              onClick={handleClick}
               style={{ backgroundColor: "#1A76D2" }}
               variant="contained"
               size="medium"

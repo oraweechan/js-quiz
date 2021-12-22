@@ -11,22 +11,22 @@ function Question(props) {
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
-  const handleSelect = (i) => {
-    if (selected === i && selected === props.correct) return "select";
-    else if (selected === i && selected !== props.correct) return "wrong";
-    else if (i === props.correct) return "select";
+  const handleSelect = (options) => {
+    if (selected === options && selected === props.correct) return "select";
+    else if (selected === options && selected !== props.correct) return "wrong";
+    else if (options === props.correct) return "select";
   };
 
-  const handleCheck = (i) => {
-    setSelected(i);
-    if (i === props.correct) props.setScore(props.score + 1);
+  const handleCheck = (option) => {
+    setSelected(option);
+    if (option === props.correct) props.setScore(props.score + 1);
     setError(false);
   };
 
   const handleNext = () => {
     if (props.currQues > props.questions.length - 2) {
       if (selected) {
-        navigate("/result");
+        navigate("/quizJS/results");
       } else setError("Please select an option first");
     } else if (selected) {
       props.setCurrQues(props.currQues + 1);
@@ -44,11 +44,11 @@ function Question(props) {
     <div>
       <h1>Question {props.currQues + 1}</h1>
       <div className="singleQuestion">
-        <h2>{props.questions[props.currQues].question}</h2>
+        
         <div className="options">
+          <h2>{props.questions[props.currQues].question}</h2>
           {error && <ErrorMessage>{error}</ErrorMessage>}
-          {props.quizOptions &&
-            props.quizOptions.map((options) => (
+          {props?.quizOptions?.map((options) => (
               <button
                 //   check if selected, if selected call handleSelect.
                 className={`singleOption  ${selected && handleSelect(options)}`}
@@ -62,7 +62,7 @@ function Question(props) {
         </div>
         <div className="controls">
           <Button
-            href="/"
+            href="/quizJS/home"
             variant="contained"
             color="secondary"
             size="large"

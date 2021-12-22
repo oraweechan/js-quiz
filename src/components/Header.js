@@ -8,7 +8,7 @@ function Header (props) {
 
     const logout = async () => {
       await signOut(auth);
-      navigate("/");
+      navigate("/quizjs/");
     };
 
     return(
@@ -20,7 +20,7 @@ function Header (props) {
           <h4> User Logged In: </h4>
           {props.user ? props.displayName: null}
 
-          <button href="/" onClick={logout}> Sign Out </button>
+          <button href="/quizjs" onClick={logout}> Sign Out </button>
         </div>
         </>
 

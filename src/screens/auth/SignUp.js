@@ -30,11 +30,13 @@ function SignUp() {
         uid: user.user.uid,
         results: [""]
       });
-      navigate("/home");
+      navigate("/quizJS/home");
     } catch (error) {
       console.log(error.message);
     }
   };
+
+  const handleClick = () => {navigate("/quizJS/")}
 
   return (
     <>
@@ -118,7 +120,7 @@ function SignUp() {
             >
               <p>Already have an account?</p>
               <Button
-                href="/"
+                onClick={handleClick}
                 style={{ backgroundColor: "#1A76D2" }}
                 variant="contained"
                 size="medium"

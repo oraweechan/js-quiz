@@ -18,19 +18,19 @@ function App() {
   const [questions, setQuestions] = useState([]);
   const [score, setScore] = useState(0);
 
-  const questionCollection = collection(db, "questions");
-  const quizCollection = collection(db, "quizzes");
-  const hardCollection = collection(db, "hard_questions");
+  const javascriptCollection = collection(db, "questions");
+  const reactCollection = collection(db, "react");
+  const htmlCssCollection = collection(db, "html_css");
 
-  const apiCall = async (difficulty = "") => {
-    if (difficulty == "easy") {
-      const data = await getDocs(questionCollection);
+  const apiCall = async (category = "") => {
+    if (category == "javascript") {
+      const data = await getDocs(javascriptCollection);
       setQuestions(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    } else if (difficulty == "medium") {
-      const data = await getDocs(quizCollection);
+    } else if (category == "react") {
+      const data = await getDocs(reactCollection);
       setQuestions(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    } else if (difficulty == "hard") {
-      const data = await getDocs(hardCollection);
+    } else if (category == "htmlCss") {
+      const data = await getDocs(htmlCssCollection);
       setQuestions(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     }
   };
@@ -54,16 +54,16 @@ function App() {
 
         <Header displayName={displayName} user={user}  />
         <Routes>
-          <Route path="/" element={<SignIn user={user} />} />
-          <Route path="signup" element={<SignUp user={user} />} />
+          <Route path="/quizJS/" element={<SignIn user={user} />} />
+          <Route path="/quizJS/signup" element={<SignUp user={user} />} />
           <Route
-            path="home"
+            path="/quizJS/home"
             element={
               <Home user={user} apiCall={apiCall} questions={questions} />
             }
           />
           <Route
-            path="play"
+            path="/quizJS/play"
             element={
               <Quiz
                 user={user}
@@ -74,7 +74,7 @@ function App() {
               />
             }
           />
-          <Route path="result" element={<Result questions={questions} user={user} score={score} setScore={setScore}/>} />
+          <Route path="/quizJS/results" element={<Result questions={questions} user={user} score={score} setScore={setScore}/>} />
         </Routes>
       </Box>
     </Container>

@@ -27,7 +27,7 @@ const Result = (props) => {
       createdAt: Timestamp.fromDate(new Date()),
     });
     props.setScore(0);
-    navigate("/home");
+    navigate("/quizJS/home");
   };
 
   useEffect(() => {

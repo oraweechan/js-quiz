@@ -7,21 +7,21 @@ import ErrorMessage from "../../components/ErrorMessage";
 import "./Home.css";
 
 function Home(props) {
-    const [difficulty, setDifficulty] = useState("");
+    const [category, setCategory] = useState("");
     const [error, setError] = useState(false);
 
     const navigate = useNavigate();
 
 
     const handleSubmit = () => {
-        // console.log({difficulty})
-        if (!difficulty) {
+        // console.log({category})
+        if (!category) {
           setError(true);
           return;
         } else {
           setError(false);
-          props.apiCall(difficulty);
-          navigate('/play');
+          props.apiCall(category);
+          navigate('/quizJS/play');
       }};
   
   
@@ -41,13 +41,13 @@ function Home(props) {
                     {/* UPDATE IF TIME FOR CATEGORIES
                     <TextField
                         select
-                        label="Select Difficulty"
+                        label="Select category"
                         variant="outlined"
                         style={{ marginBottom: 30 }}
                     >
                     {
                         props.dataList.map((question) => (
-                            <MenuItem key={question.difficulty} value={question.value} > {question.difficulty} </MenuItem>
+                            <MenuItem key={question.category} value={question.value} > {question.category} </MenuItem>
 
                         ))
                     }
@@ -55,20 +55,20 @@ function Home(props) {
 
                         <TextField
                                     select
-                                    label="Select Difficulty"
-                                    value={difficulty}
-                                    onChange={(e) => setDifficulty(e.target.value)}
+                                    label="Select Category"
+                                    value={category}
+                                    onChange={(e) => setCategory(e.target.value)}
                                     variant="outlined"
                                     style={{ marginBottom: 30 }}
                                 >
-                                    <MenuItem key="Easy" value="easy">
-                                    Easy
+                                    <MenuItem key="Javascript" value="javascript">
+                                    Javascript
                                     </MenuItem>
-                                    <MenuItem key="Medium" value="medium">
-                                    Medium
+                                    <MenuItem key="React" value="react">
+                                    React
                                     </MenuItem>
-                                    <MenuItem key="Hard" value="hard">
-                                    Hard
+                                    <MenuItem key="HtmlCss" value="htmlCss">
+                                    HTML / CSS
                                     </MenuItem>
                                 </TextField>
                                 <Button
