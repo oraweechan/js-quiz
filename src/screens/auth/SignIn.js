@@ -1,27 +1,14 @@
-import { Col, Row, Container, Form } from "react-bootstrap";
-import { Typography, Paper, Box} from "@mui/material";
 import Button from "@mui/material/Button";
 import TextField from '@mui/material/TextField';
-import React, { useState, useContext } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebase/utils";
-import {
-  signInWithEmailAndPassword, signOut
-} from "firebase/auth";
-// import UserContext from "./userContext";
+import {signInWithEmailAndPassword} from "firebase/auth";
+import Box from '@mui/material/Box';
 
-
-const linkStyle = {
-  textDecoration: "none",
-  color: "white",
-};
-
-function Login({user}) {
+function SignIn({user}) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  // const [error, setError] = useState();
-
-  // const { setUserData } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -32,20 +19,17 @@ function Login({user}) {
         email,
         password
       );
-      // console.log(user);
       navigate("/home");
     } catch (error) {
       console.log(error.message);
     }
   };
 
-
-
   return (
     <>
   
       <div>
-      <h3>Login</h3>
+      <h3>Sign In</h3>
       <Box>
       <TextField
 
@@ -63,11 +47,11 @@ function Login({user}) {
             setPassword(event.target.value);
           }}
           />
-          <button onClick={handleSubmit}> Login</button>
+          <button onClick={handleSubmit}> Sign In</button>
       </Box>
 
       <Box>
-        <span>New to Travelgram?</span>
+        <span>New to QuizJS?</span>
 
             <Button
               href="signup"
@@ -87,4 +71,4 @@ function Login({user}) {
   );
 }
 
-export default Login;
+export default SignIn;

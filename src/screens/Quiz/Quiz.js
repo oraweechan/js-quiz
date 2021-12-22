@@ -19,13 +19,10 @@ function Quiz(props) {
     );
   }, [currQues, props.questions]);
 
-  
 
   const handleShuffle = (options) => {
     return options?.sort(() => Math.random() - 0.5);
   };
-
-
 
   return (
     <div className="Quiz">
@@ -33,7 +30,6 @@ function Quiz(props) {
       {quizOptions ? (
         <>
         <div className="quizInfo">
-          {/* <span>{props.questions[currQues].difficulty}</span> */}
           <span>Score: {props.score}</span>
         </div>
 
@@ -46,10 +42,7 @@ function Quiz(props) {
           setScore={props.setScore}
           setQuestions={props.setQuestions}
           correct={props.questions[currQues]?.correct_option}
-
-
         />
-        
         </>
       ): (
         <CircularProgress

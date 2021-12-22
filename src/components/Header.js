@@ -1,29 +1,15 @@
 import { Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
-import { auth,db } from "../firebase/utils";
-import { ref, onValue} from "firebase/database";
-import { useState, useEffect } from "react";
-import {
-    collection,
-    getDocs,
-    addDoc,
-    updateDoc,
-    where,
-    query,
-  } from "firebase/firestore";
-
-
+import { auth } from "../firebase/utils";
 
 function Header (props) {
-    // console.log(props)
     const navigate = useNavigate();
 
     const logout = async () => {
       await signOut(auth);
       navigate("/");
     };
-
 
     return(
         <>

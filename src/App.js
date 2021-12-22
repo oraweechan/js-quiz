@@ -1,33 +1,20 @@
 import Quiz from "./screens/Quiz/Quiz";
 import Result from "./screens/Result/Result";
 import { Routes, Route } from "react-router-dom";
-import UserContext from "./screens/auth/userContext";
 import React, { useState, useEffect } from "react";
-import { collection, getDocs,where,
-  query, } from "firebase/firestore";
+import { collection, getDocs,where, query, } from "firebase/firestore";
 import { db, auth } from "../src/firebase/utils";
-import { useNavigate } from "react-router-dom";
-
-import { Container, Typography } from "@mui/material";
+import { Container } from "@mui/material";
 import { Box } from "@mui/system";
 import SignIn from "./screens/auth/SignIn";
 import SignUp from "./screens/auth/SignUp";
 import Home from "./screens/Home/Home";
-
 import { useAuthState } from "react-firebase-hooks/auth";
-import { signOut } from "firebase/auth";
-import { ref, onValue} from "firebase/database";
 import Header from "./components/Header";
-
-
 
 function App() {
   const [user] = useAuthState(auth);
   const [displayName, setDisplayName] = useState([]);
-
-
- 
-
   const [questions, setQuestions] = useState([]);
   const [score, setScore] = useState(0);
 
@@ -62,7 +49,6 @@ function App() {
   }, [user]);
 
   return (
-    // <UserContext.Provider value={{ user, setUser }}>
     <Container maxWidth="sm">
       <Box textAlign="center" mt={5}>
 
@@ -88,11 +74,10 @@ function App() {
               />
             }
           />
-          <Route path="result" element={<Result user={user} score={score} setScore={setScore}/>} />
+          <Route path="result" element={<Result questions={questions} user={user} score={score} setScore={setScore}/>} />
         </Routes>
       </Box>
     </Container>
-    // </UserContext.Provider>
   );
 }
 

@@ -1,23 +1,15 @@
 import Button from "@mui/material/Button";
 import { Container, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { Typography } from "@mui/material";
 import { Paper } from "@mui/material";
 import { Form } from "react-bootstrap";
 import { TextField } from "@mui/material";
-
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  createUserWithEmailAndPassword,
-  updateProfile,
-  getAuth,
-} from "firebase/auth";
+import {createUserWithEmailAndPassword} from "firebase/auth";
 import { auth, db } from "../../firebase/utils";
 import {
-  collection,
   doc,
-  addDoc,
   setDoc
 } from "firebase/firestore";
 
@@ -25,8 +17,6 @@ function SignUp() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [displayName, setDisplayName] = useState();
-  const [error, setError] = useState();
-  // const { setUserData } = useContext(UserContext);
 
   const navigate = useNavigate();
 

@@ -1,11 +1,12 @@
 import { useState } from "react";
 import ErrorMessage from "./ErrorMessage";
-import "./Question.css";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase/utils";
+import "./Question.css";
 
 function Question(props) {
-  
   const [selected, setSelected] = useState();
   const [error, setError] = useState(false);
   const navigate = useNavigate();
@@ -25,9 +26,7 @@ function Question(props) {
   const handleNext = () => {
     if (props.currQues > props.questions.length - 2) {
       if (selected) {
-        
         navigate("/result");
-
       } else setError("Please select an option first");
     } else if (selected) {
       props.setCurrQues(props.currQues + 1);
@@ -35,9 +34,10 @@ function Question(props) {
     } else setError("Please select an option first");
   };
 
-  const handleQuit = () => {
+  const handleQuit = async () => {
     props.setCurrQues(0);
     props.setQuestions();
+    await signOut(auth);
   };
 
   return (
@@ -62,11 +62,11 @@ function Question(props) {
         </div>
         <div className="controls">
           <Button
+            href="/"
             variant="contained"
             color="secondary"
             size="large"
             style={{ width: 185 }}
-            href="/home"
             onClick={() => handleQuit()}
           >
             Quit
