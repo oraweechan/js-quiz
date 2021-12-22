@@ -38,7 +38,9 @@ function SignUp() {
         email: email,
         displayName: displayName,
         uid: user.user.uid,
+        results: [""]
       });
+      navigate("/home");
     } catch (error) {
       console.log(error.message);
     }

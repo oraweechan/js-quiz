@@ -25,28 +25,7 @@ function Quiz(props) {
     return options?.sort(() => Math.random() - 0.5);
   };
 
-  // console.log(quizOptions);
 
-  // const questions = props.questions.map((quiz, index) =>{
-  //   const options = props.quiz.options.map((options) => {
-  //     const choices = [];
-  //     choices.push(options)
-  //     return(
-  //       <Box m={2}>
-  //         <Button variant="contained" sx={{display:'block', margin:'0 auto', textAlign:'center', }} >{choices}</Button>
-  //       </Box>
-  //     )
-
-  //   });
-  //   return(
-  //     <>
-  //     <Typography>{index + 1} / </Typography>
-  //     <h1>{quiz.question}</h1>
-  //     {options}
-  //     <Button>Button</Button>
-  //     </>
-  //   )
-  // });
 
   return (
     <div className="Quiz">

@@ -16,7 +16,7 @@ import {
 
 
 function Header (props) {
-    console.log(props)
+    // console.log(props)
     const navigate = useNavigate();
 
     const logout = async () => {
@@ -34,7 +34,7 @@ function Header (props) {
           <h4> User Logged In: </h4>
           {props.user ? props.displayName: null}
 
-          <button onClick={logout}> Sign Out </button>
+          <button href="/" onClick={logout}> Sign Out </button>
         </div>
         </>
 

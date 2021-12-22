@@ -32,7 +32,7 @@ function Login({user}) {
         email,
         password
       );
-      console.log(user);
+      // console.log(user);
       navigate("/home");
     } catch (error) {
       console.log(error.message);
