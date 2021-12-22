@@ -2,15 +2,16 @@ import Quiz from "./screens/Quiz/Quiz";
 import Result from "./screens/Result/Result";
 import { Routes, Route } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import { collection, getDocs,where, query, } from "firebase/firestore";
+import { collection, getDocs, where, query } from "firebase/firestore";
 import { db, auth } from "../src/firebase/utils";
 import { Container } from "@mui/material";
 import { Box } from "@mui/system";
-import SignIn from "./screens/auth/SignIn";
-import SignUp from "./screens/auth/SignUp";
+import SignIn from "./screens/Sign/SignIn";
+import SignUp from "./screens/Sign/SignUp";
 import Home from "./screens/Home/Home";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Header from "./components/Header";
+import "./App.css";
 
 function App() {
   const [user] = useAuthState(auth);
@@ -37,13 +38,16 @@ function App() {
 
   useEffect(() => {
     const getUser = async () => {
-        const q = query(collection(db, "users"), where("email", "==", user.email));
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-          // doc.data() is never undefined for query doc snapshots
-          // console.log(doc.id, " => ", doc.data());
-          setDisplayName(doc.data().displayName)
-        });
+      const q = query(
+        collection(db, "users"),
+        where("email", "==", user.email)
+      );
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        // console.log(doc.id, " => ", doc.data());
+        setDisplayName(doc.data().displayName);
+      });
     };
     getUser();
   }, [user]);
@@ -51,16 +55,13 @@ function App() {
   return (
     <Container maxWidth="sm">
       <Box textAlign="center" mt={5}>
-
-        <Header displayName={displayName} user={user}  />
+        <Header displayName={displayName} user={user} />
         <Routes>
-          <Route path="/quizJS/" element={<SignIn user={user} />} />
-          <Route path="/quizJS/signup" element={<SignUp user={user} />} />
+          <Route path="/quizJS/" element={<SignIn />} />
+          <Route path="/quizJS/signup" element={<SignUp />} />
           <Route
             path="/quizJS/home"
-            element={
-              <Home user={user} apiCall={apiCall} questions={questions} />
-            }
+            element={<Home apiCall={apiCall} questions={questions} />}
           />
           <Route
             path="/quizJS/play"
@@ -74,7 +75,17 @@ function App() {
               />
             }
           />
-          <Route path="/quizJS/results" element={<Result questions={questions} user={user} score={score} setScore={setScore}/>} />
+          <Route
+            path="/quizJS/results"
+            element={
+              <Result
+                questions={questions}
+                user={user}
+                score={score}
+                setScore={setScore}
+              />
+            }
+          />
         </Routes>
       </Box>
     </Container>

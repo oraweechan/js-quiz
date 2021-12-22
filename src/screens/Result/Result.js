@@ -15,10 +15,9 @@ import { db } from "../../firebase/utils";
 import "./Result.css";
 
 const Result = (props) => {
-  console.log(props.questions.length)
+  console.log(props.questions.length);
   const navigate = useNavigate();
   const [results, setResult] = useState([]);
-  const [createdAt, SetCreatedAt] = useState([]);
 
   const handleSubmit = async () => {
     const userDoc = doc(db, "users", props.user.uid);
@@ -48,7 +47,9 @@ const Result = (props) => {
 
   return (
     <div className="result">
-      <span className="title">Final Score : {props.score} / {props.questions.length}</span>
+      <span className="title">
+        Final Score : {props.score} / {props.questions.length}
+      </span>
       <div className="resultInfo">
         {/* {results && results.map((result) => <p key={result}>{result}</p>)} */}
       </div>

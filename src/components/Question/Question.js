@@ -1,9 +1,9 @@
 import { useState } from "react";
-import ErrorMessage from "./ErrorMessage";
+import ErrorMessage from "../ErrorMessage";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
-import { auth } from "../firebase/utils";
+import { auth } from "../../firebase/utils";
 import "./Question.css";
 
 function Question(props) {
@@ -44,21 +44,20 @@ function Question(props) {
     <div>
       <h1>Question {props.currQues + 1}</h1>
       <div className="singleQuestion">
-        
         <div className="options">
           <h2>{props.questions[props.currQues].question}</h2>
           {error && <ErrorMessage>{error}</ErrorMessage>}
           {props?.quizOptions?.map((options) => (
-              <button
-                //   check if selected, if selected call handleSelect.
-                className={`singleOption  ${selected && handleSelect(options)}`}
-                key={options}
-                onClick={() => handleCheck(options)}
-                disabled={selected}
-              >
-                {options}
-              </button>
-            ))}
+            <button
+              //   check if selected, if selected call handleSelect.
+              className={`singleOption  ${selected && handleSelect(options)}`}
+              key={options}
+              onClick={() => handleCheck(options)}
+              disabled={selected}
+            >
+              {options}
+            </button>
+          ))}
         </div>
         <div className="controls">
           <Button
