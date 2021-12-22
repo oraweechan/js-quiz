@@ -9,7 +9,8 @@ import "./Result.css";
 
 const Result = (props) => {
   const navigate = useNavigate();
-  const [results, setResult] = useState([])
+  const [results, setResult] = useState([]);
+  const [reversedResults, setReversedResults] = useState([]);
 
   const handleSubmit = async () => {
     const userDoc = doc(db, "users", props.user.uid);
@@ -27,12 +28,18 @@ const Result = (props) => {
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
           // doc.data() is never undefined for query doc snapshots
-          console.log(doc.id, " => ", doc.data().results);
-          setResult(doc.data().results)
+          console.log(doc.id, " => ", doc.data().results.splice(1));
+          setResult(doc.data().results.splice(1).reverse())
+          
         });
+        
     }
     getResults()
+    
   }, [])
+
+  
+
 
 
   return (
@@ -41,13 +48,13 @@ const Result = (props) => {
       <div className="resultInfo">
       {results &&
             results.map((result) => (
-              <button
+              <p
                 //   check if selected, if selected call handleSelect.
              
                 key={result}
               >
                 {result}
-              </button>
+              </p>
             ))}
 
       </div>

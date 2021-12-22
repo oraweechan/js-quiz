@@ -25,6 +25,7 @@ function Question(props) {
   const handleNext = () => {
     if (props.currQues > props.questions.length - 2) {
       if (selected) {
+        
         navigate("/result");
 
       } else setError("Please select an option first");
