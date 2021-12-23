@@ -12,6 +12,20 @@ import Home from "./screens/Home/Home";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Header from "./components/Header";
 import "./App.css";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { Paper } from "@mui/material";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#D06F4D'
+    },
+    text: {
+      // primary: '#FFFFFF'
+    }
+
+  }
+})
 
 function App() {
   const [user] = useAuthState(auth);
@@ -53,8 +67,14 @@ function App() {
   }, [user]);
 
   return (
-    <Container maxWidth="sm">
-      <Box textAlign="center" mt={5}>
+    <ThemeProvider theme={theme}>
+      <Container maxWidth="sm">
+      <Box 
+      sx={{
+       
+      }}
+      textAlign="center" mt={2}>
+        
         <Header displayName={displayName} user={user} />
         <Routes>
           <Route path="/quizJS/" element={<SignIn />} />
@@ -87,8 +107,14 @@ function App() {
             }
           />
         </Routes>
+        {/* <Footer/> */}
+
+        
       </Box>
     </Container>
+
+    </ThemeProvider>
+    
   );
 }
 

@@ -5,11 +5,13 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebase/utils";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import Box from "@mui/material/Box";
-import { Container } from "@mui/material";
+import { Container, Grid, Paper, Typography } from "@mui/material";
+
 
 function SignIn() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  // const [error, setError] = useState(false);
 
   const navigate = useNavigate();
 
@@ -28,11 +30,20 @@ function SignIn() {
 
   return (
     <>
-      <div>
-        <h3>Sign In</h3>
-        <Container>
-          <Box sx={{ textAlign: "center" }}>
+      <Grid container direction="column">
+      
+
+          <Typography fontSize={18}>Sign in </Typography>
+       
+          <Grid container 
+          direction="column"
+          justifyContent="space-evenly"
+          alignItems="center"
+          textAlign="center">
+           
             <TextField
+              style= {{width: '80%'}}
+              margin="normal"
               size="small"
               placeholder="Email..."
               onChange={(event) => {
@@ -40,30 +51,43 @@ function SignIn() {
               }}
             />
             <TextField
-              size="small"
-              type="password"
-              placeholder="Password..."
-              onChange={(event) => {
-                setPassword(event.target.value);
-              }}
-            />
-            <button onClick={handleSubmit}> Sign In</button>
-          </Box>
+               style= {{width: '80%'}}
+                size="small"
+                type="password"
+                placeholder="Password..."
+                onChange={(event) => {
+                  setPassword(event.target.value);
+                }}
+              />
+          </Grid>
+        
+        <Grid container 
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+        textAlign="center">
+          <Grid item sx={{m:2}}>
+            <Button onClick={handleSubmit} variant="contained" size="medium">
+              Sign In
+            </Button>
+          {/* <button onClick={handleSubmit}> Sign In</button> */}
+          </Grid>
 
-          <Box>
-            <span>New to QuizJS?</span>
-
+          <Grid item sx={{m:5}}>
+            <Typography>New to QuizJS?</Typography>
+        {/* </Grid> */}
+        {/* <Grid> */}
             <Button
               onClick={handleClick}
-              style={{ backgroundColor: "#1A76D2" }}
+              // style={{ backgroundColor: "#1A76D2" }}
               variant="contained"
-              size="medium"
+              size="small"
             >
-              Create an Account
+            Create an Account
             </Button>
-          </Box>
-        </Container>
-      </div>
+          </Grid>
+        </Grid>
+      </Grid>
     </>
   );
 }

@@ -1,10 +1,12 @@
 import { useState } from "react";
 import ErrorMessage from "../ErrorMessage";
-import { Button } from "@mui/material";
+import { Button, Grid, Paper, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/utils";
 import "./Question.css";
+import { Container,Row,Col } from "react-bootstrap";
+import { Box } from "@mui/system";
 
 function Question(props) {
   const [selected, setSelected] = useState();
@@ -42,26 +44,48 @@ function Question(props) {
 
   return (
     <div>
-      <h1>Question {props.currQues + 1}</h1>
+
+      <Typography textAlign="left" fontSize={25}>Question {props.currQues + 1}</Typography>
       <div className="singleQuestion">
-        <div className="options">
-          <h2>{props.questions[props.currQues].question}</h2>
-          {error && <ErrorMessage>{error}</ErrorMessage>}
-          {props?.quizOptions?.map((options) => (
-            <button
-              //   check if selected, if selected call handleSelect.
-              className={`singleOption  ${selected && handleSelect(options)}`}
-              key={options}
-              onClick={() => handleCheck(options)}
-              disabled={selected}
-            >
-              {options}
-            </button>
-          ))}
-        </div>
+     
+       
+         <Row>
+         <Typography fontSize={20}>{props.questions[props.currQues].question}</Typography>
+         </Row>
+         <Row>
+         <Col>
+         
+         
+         {error && <ErrorMessage>{error}</ErrorMessage>}
+
+         <Box display="grid" gridTemplateColumns="repeat( 1fr 1fr)" gap={2}>
+          <div className="options">
+         {props?.quizOptions?.map((options) => (
+           <button
+             //   check if selected, if selected call handleSelect.
+             className={`singleOption  ${selected && handleSelect(options)}`}
+             key={options}
+             onClick={() => handleCheck(options)}
+             disabled={selected}
+             variant="contained"
+           >
+             {options}
+           </button>
+         ))}
+       </div></Box>
+
+         
+         </Col>
+
+         </Row>
+        
+         
+
+    
+        
         <div className="controls">
           <Button
-            href="/quizJS/home"
+            href="/quizJS/"
             variant="contained"
             color="secondary"
             size="large"

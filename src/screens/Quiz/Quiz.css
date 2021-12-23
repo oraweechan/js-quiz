@@ -1,14 +1,14 @@
 .quizInfo {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     text-transform: uppercase;
     margin: 10px;
 }
 
-.subtitle {
+/* .subtitle {
     font-size: 25px;
     border: 1px solid black;
     box-shadow: 4px 4px 2px black;
     padding: 5px 10px;
-  }
+  } */

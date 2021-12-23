@@ -104,7 +104,7 @@ function SignUp() {
                     </Col>
                   </Form.Group>
                   <Button
-                    style={{ backgroundColor: "#1A76D2" }}
+                    // style={{ backgroundColor: "#1A76D2" }}
                     variant="contained"
                     size="large"
                     type="submit"
@@ -121,7 +121,7 @@ function SignUp() {
               <p>Already have an account?</p>
               <Button
                 onClick={handleClick}
-                style={{ backgroundColor: "#1A76D2" }}
+                // style={{ backgroundColor: "#1A76D2" }}
                 variant="contained"
                 size="medium"
               >

@@ -21,7 +21,6 @@ function Quiz(props) {
 
   return (
     <div className="Quiz">
-      {/* <span className="subtitle">Welcome, name</span> */}
       {quizOptions ? (
         <>
           <div className="quizInfo">
