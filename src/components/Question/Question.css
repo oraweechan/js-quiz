@@ -38,8 +38,6 @@ html {
   button {
     transition-duration: 0.4s;
   }
-
-
   
   /* smaller screen */
  @media (max-width: 614px) {
@@ -50,7 +48,7 @@ html {
     
     .controls {
       justify-content: space-between;
-      margin-top: 200px;
+      margin-top: 170px;
     }
   }
   .controls {
@@ -79,4 +77,6 @@ html {
     justify-content: space-between;
     align-items: center;
     margin-left: -.5%;
+    background: rgba(255, 255, 255, .1) ;
+    padding:2%;
   }

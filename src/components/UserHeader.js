@@ -16,12 +16,11 @@ function UserHeader (props) {
     return(
         <>
         <Grid
-        className="subtitle"
         container
         direction="row"
         justifyContent="space-between"
         alignItems="center">
-          <Typography > Welcome, {props.displayName} </Typography>
+          <Typography fontSize={17} style={{color:'#826E00'}}> Welcome, {props.displayName} </Typography>
           <Button  href="/quizJS" onClick={logout}> Sign Out </Button>
         </Grid>
         </>

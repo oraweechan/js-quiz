@@ -47,10 +47,10 @@ function Question(props) {
     <div>
       <div className="quizInfo">
             
-            <Typography style={{color:'#826E00'}} textAlign="left" fontSize={17}>
+            <Typography style={{color:'#AB9378'}} textAlign="left" fontSize={17}>
         Question {props.currQues + 1}
       </Typography>
-      <Typography style={{color:'#826E00',}} fontSize={17}>Score: {props.score}</Typography>
+      <Typography style={{color:'#AB9378',}} fontSize={17}>Score: {props.score}</Typography>
             
           </div>
       {/* <Typography textAlign="left" fontSize={25}>
@@ -61,7 +61,7 @@ function Question(props) {
 
         <Grid container  spacing={3}>
           <Grid item xs={12}>
-            <Typography style={{padding:15}} fontSize={19}>
+            <Typography style={{padding:20}} fontSize={19}>
               {props.questions[props.currQues].question}
             </Typography>
           </Grid>
