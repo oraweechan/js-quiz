@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase/utils";
@@ -21,8 +21,8 @@ function UserHeader (props) {
         direction="row"
         justifyContent="space-between"
         alignItems="center">
-          <span > Welcome, {props.displayName} </span>
-          <button href="/quizJS" onClick={logout}> Sign Out </button>
+          <Typography > Welcome, {props.displayName} </Typography>
+          <Button href="/quizJS" onClick={logout}> Sign Out </Button>
         </Grid>
         </>
 

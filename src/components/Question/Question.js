@@ -45,9 +45,17 @@ function Question(props) {
 
   return (
     <div>
-      <Typography textAlign="left" fontSize={25}>
+      <div className="quizInfo">
+            
+            <Typography style={{color:'#826E00'}} textAlign="left" fontSize={20}>
         Question {props.currQues + 1}
       </Typography>
+      <Typography style={{color:'#826E00',}} fontSize={18}>Score: {props.score}</Typography>
+            
+          </div>
+      {/* <Typography textAlign="left" fontSize={25}>
+        Question {props.currQues + 1}
+      </Typography> */}
       <div className="singleQuestion">
         {error && <ErrorMessage>{error}</ErrorMessage>}
 
@@ -76,6 +84,7 @@ function Question(props) {
             </div>
           </Grid>
         </Grid>
+        
 
         <div className="controls">
           <Button

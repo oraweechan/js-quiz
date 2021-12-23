@@ -31,10 +31,7 @@ function SignIn() {
   return (
     <>
       <Grid container direction="column">
-      
-
           <Typography fontSize={18}>Sign in </Typography>
-       
           <Grid container 
           direction="column"
           justifyContent="space-evenly"
@@ -42,7 +39,8 @@ function SignIn() {
           textAlign="center">
            
             <TextField
-              style= {{width: '80%'}}
+              style= {{width: '80%', background:'#153544'}}
+              
               margin="normal"
               size="small"
               placeholder="Email..."
@@ -51,7 +49,7 @@ function SignIn() {
               }}
             />
             <TextField
-               style= {{width: '80%'}}
+               style= {{width: '80%', background:'#153544'}}
                 size="small"
                 type="password"
                 placeholder="Password..."

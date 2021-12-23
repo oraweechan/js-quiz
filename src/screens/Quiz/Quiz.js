@@ -23,9 +23,9 @@ function Quiz(props) {
     <div className="Quiz">
       {quizOptions ? (
         <>
-          <div className="quizInfo">
+          {/* <div className="quizInfo">
             <span>Score: {props.score}</span>
-          </div>
+          </div> */}
 
           <Question
             currQues={currQues}

@@ -34,12 +34,12 @@ function Home(props) {
 
                         <TextField
                                     select
-                                    
+                                    InputLabelProps={{style : {color : '#49AA8C'} }}
                                     label="Select Category"
                                     value={category}
                                     onChange={(e) => setCategory(e.target.value)}
                                     variant="outlined"
-                                    style={{ marginBottom: 30, background:'white',  }}
+                                    style={{  marginBottom: 30, background:'#153544'  }}
                                 >
                                     <MenuItem key="Javascript" value="javascript">
                                     Javascript
