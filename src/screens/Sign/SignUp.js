@@ -43,10 +43,7 @@ function SignUp() {
       <Container component="main">
         <Row className="justify-content-md-center">
           <Col sm={6}>
-            <Paper
-              className="w-responsive text-center mx-auto p-3 mt-2"
-              elevation={3}
-            >
+      
               <Col sm={12}>
                 <Typography fontFamily="'Poppins', sans-serif">
                   Create an Account
@@ -113,11 +110,7 @@ function SignUp() {
                   </Button>
                 </Form>
               </Col>
-            </Paper>
-            <Paper
-              className="w-responsive text-center mx-auto p-3 mt-4"
-              elevation={3}
-            >
+           
               <p>Already have an account?</p>
               <Button
                 onClick={handleClick}
@@ -127,7 +120,7 @@ function SignUp() {
               >
                 Sign In
               </Button>
-            </Paper>
+      
           </Col>
         </Row>
       </Container>

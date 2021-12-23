@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import {
@@ -47,9 +47,10 @@ const Result = (props) => {
 
   return (
     <div className="result">
-      <span className="title">
-        Final Score : {props.score} / {props.questions.length}
-      </span>
+      {/* <span className="title"> */}
+        <Typography>  You scored {props.score} out of {props.questions.length}! </Typography>
+        {/* Final Score : {props.score} / {props.questions.length} */}
+      {/* </span> */}
       <div className="resultInfo">
         {/* {results && results.map((result) => <p key={result}>{result}</p>)} */}
       </div>

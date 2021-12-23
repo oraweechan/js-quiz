@@ -5,8 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/utils";
 import "./Question.css";
-import { Container,Row,Col } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { Box } from "@mui/system";
+import ResultModal from "../ResultModal";
 
 function Question(props) {
   const [selected, setSelected] = useState();
@@ -28,7 +29,7 @@ function Question(props) {
   const handleNext = () => {
     if (props.currQues > props.questions.length - 2) {
       if (selected) {
-        navigate("/quizJS/results");
+        // navigate("/quizJS/results");
       } else setError("Please select an option first");
     } else if (selected) {
       props.setCurrQues(props.currQues + 1);
@@ -44,45 +45,38 @@ function Question(props) {
 
   return (
     <div>
-
-      <Typography textAlign="left" fontSize={25}>Question {props.currQues + 1}</Typography>
+      <Typography textAlign="left" fontSize={25}>
+        Question {props.currQues + 1}
+      </Typography>
       <div className="singleQuestion">
-     
-       
-         <Row>
-         <Typography fontSize={20}>{props.questions[props.currQues].question}</Typography>
-         </Row>
-         <Row>
-         <Col>
-         
-         
-         {error && <ErrorMessage>{error}</ErrorMessage>}
+        {error && <ErrorMessage>{error}</ErrorMessage>}
 
-         <Box display="grid" gridTemplateColumns="repeat( 1fr 1fr)" gap={2}>
-          <div className="options">
-         {props?.quizOptions?.map((options) => (
-           <button
-             //   check if selected, if selected call handleSelect.
-             className={`singleOption  ${selected && handleSelect(options)}`}
-             key={options}
-             onClick={() => handleCheck(options)}
-             disabled={selected}
-             variant="contained"
-           >
-             {options}
-           </button>
-         ))}
-       </div></Box>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Typography fontSize={20}>
+              {props.questions[props.currQues].question}
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <div className="options">
+              {props?.quizOptions?.map((options) => (
+                <button
+                  //   check if selected, if selected call handleSelect.
+                  className={`singleOption  ${
+                    selected && handleSelect(options)
+                  }`}
+                  key={options}
+                  onClick={() => handleCheck(options)}
+                  disabled={selected}
+                  variant="contained"
+                >
+                  {options}
+                </button>
+              ))}
+            </div>
+          </Grid>
+        </Grid>
 
-         
-         </Col>
-
-         </Row>
-        
-         
-
-    
-        
         <div className="controls">
           <Button
             href="/quizJS/"
@@ -94,17 +88,26 @@ function Question(props) {
           >
             Quit
           </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            style={{ width: 185 }}
-            onClick={handleNext}
-          >
-            {props.currQues > props.questions.length - 2
-              ? "Submit"
-              : "Next Question"}
-          </Button>
+
+          {props.currQues > props.questions.length - 2 && selected ? (
+            <ResultModal
+              questions={props.questions}
+              score={props.score}
+              setScore={props.setScore}
+            />
+          ) : (
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              style={{ width: 185 }}
+              onClick={handleNext}
+            >
+              {props.currQues > props.questions.length - 2
+                ? "Submit"
+                : "Next Question"}
+            </Button>
+          )}
         </div>
       </div>
     </div>

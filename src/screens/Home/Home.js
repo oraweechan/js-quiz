@@ -28,7 +28,6 @@ function Home(props) {
     return (
         <div className="content">
             <div className="settings">
-                <Typography>Settings</Typography>
                 <div className="settings_select">
                     {error && <ErrorMessage>Please fill all the fields</ErrorMessage>}
 
