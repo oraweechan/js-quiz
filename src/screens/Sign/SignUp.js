@@ -3,15 +3,12 @@ import { Container, Row, Col } from "react-bootstrap";
 import { Typography } from "@mui/material";
 import { Paper } from "@mui/material";
 import { Form } from "react-bootstrap";
-import { TextField } from "@mui/material";
+import { TextField, Grid } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {createUserWithEmailAndPassword} from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../firebase/utils";
-import {
-  doc,
-  setDoc
-} from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 
 function SignUp() {
   const [email, setEmail] = useState();
@@ -28,7 +25,7 @@ function SignUp() {
         email: email,
         displayName: displayName,
         uid: user.user.uid,
-        results: [""]
+        results: [""],
       });
       navigate("/quizJS/home");
     } catch (error) {
@@ -36,82 +33,67 @@ function SignUp() {
     }
   };
 
-  const handleClick = () => {navigate("/quizJS/")}
+  const handleClick = () => {
+    navigate("/quizJS/");
+  };
 
   return (
     <>
-      <Container component="main">
-        <Row className="justify-content-md-center">
-          <Col sm={6}>
-      
-              <Col sm={12}>
-                <Typography fontFamily="'Poppins', sans-serif">
-                  Create an Account
-                </Typography>
-                {/* {error && (
-                  <ErrorNotice
-                    message={error}
-                    clearError={() => setError(undefined)}
-                  />
-                )} */}
+      <Form onSubmit={handleSubmit}>
+        <Grid container direction="column">
+          <Typography fontSize={18}>Create an Account </Typography>
+          <Grid
+            container
+            direction="column"
+            justifyContent="space-evenly"
+            alignItems="center"
+            textAlign="center"
+          >
+            <TextField
+              style={{ width: "80%", background: "#153544" }}
+              margin="normal"
+              size="small"
+              placeholder="Email..."
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <TextField
+              style={{ width: "80%", background: "#153544" }}
+              margin="normal"
+              size="small"
+              placeholder="Username..."
+              onChange={(e) => setDisplayName(e.target.value)}
+            />
+            <TextField
+              style={{ width: "80%", background: "#153544" }}
+              margin="normal"
+              size="small"
+              type="password"
+              placeholder="Password..."
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Grid>
 
-                <Form onSubmit={handleSubmit}>
-                  <Form.Group
-                    as={Row}
-                    className="mb-3"
-                    controlId="formPlaintextEmail"
-                  >
-                    <Form.Label column sm="4" md="12"></Form.Label>
-                    <Col sm="12">
-                      <TextField
-                        fullWidth
-                        required
-                        onChange={(e) => setEmail(e.target.value)}
-                        name="email"
-                        label="Email Address"
-                      />
-                    </Col>
-                  </Form.Group>
+          <Grid
+            container
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+            textAlign="center"
+          >
+            <Grid item sx={{ m: 2 }}>
+              <Button
+                variant="contained"
+                size="large"
+                type="submit"
+              >
+                Submit
+              </Button>
 
-                  <Col sm="12">
-                    <TextField
-                      required
-                      fullWidth
-                      onChange={(e) => setDisplayName(e.target.value)}
-                      name="username"
-                      label="Username"
-                    />
-                  </Col>
+              {/* <button onClick={handleSubmit}> Sign In</button> */}
+            </Grid>
 
-                  <Form.Group
-                    as={Row}
-                    className="mb-3"
-                    controlId="formPlaintextPassword"
-                  >
-                    <Form.Label column sm="12"></Form.Label>
-                    <Col sm="12">
-                      <TextField
-                        required
-                        fullWidth
-                        onChange={(e) => setPassword(e.target.value)}
-                        name="password"
-                        type="password"
-                        label="Password"
-                      />
-                    </Col>
-                  </Form.Group>
-                  <Button
-                    // style={{ backgroundColor: "#1A76D2" }}
-                    variant="contained"
-                    size="large"
-                    type="submit"
-                  >
-                    Submit
-                  </Button>
-                </Form>
-              </Col>
-           
-              <p>Already have an account?</p>
+            <Grid item sx={{ m: 5 }}>
+              <Typography>Already have an account?</Typography>
               <Button
                 onClick={handleClick}
                 // style={{ backgroundColor: "#1A76D2" }}
@@ -120,10 +102,12 @@ function SignUp() {
               >
                 Sign In
               </Button>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Form>
+
       
-          </Col>
-        </Row>
-      </Container>
     </>
   );
 }

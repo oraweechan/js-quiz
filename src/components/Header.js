@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase/utils";
 import UserHeader from "./UserHeader";
-// import "./Header.css";
+import "./Header.css";
 
 
 function Header (props) {
@@ -18,19 +18,10 @@ function Header (props) {
 
     return(
         <>
-        <Typography variant="h2" fontWeight="bold">
-          Quiz JS
+        <Typography style={{color:'#D06F4D'}} variant="h2" fontWeight="bold">
+          Quiz<span className="jsTitle">JS</span>
         </Typography>
         {props.user && <UserHeader displayName={props.displayName} user={props.user}/>}
-        {/* <UserHeader/> */}
-
-        {/* <div>
-          
-          <h4> User Logged In: </h4>
-          {props.user ? props.displayName: null}
-
-          <button href="/quizJS" onClick={logout}> Sign Out </button>
-        </div> */}
         </>
 
     )

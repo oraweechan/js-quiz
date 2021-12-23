@@ -10,7 +10,7 @@ const style = {
   top: "25%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 370,
+  width: 350,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -51,7 +51,7 @@ export default function ResultModal(props) {
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <Button
               variant="contained"
-              color="secondary"
+              color="success"
               size="large"
               style={{ alignSelf: "center", marginTop: 20 }}
               onClick={handleSubmit}

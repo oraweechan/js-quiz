@@ -34,7 +34,7 @@ function Home(props) {
 
                         <TextField
                                     select
-                                    InputLabelProps={{style : {color : '#49AA8C'} }}
+                                    InputLabelProps={{style : {color : '#FFFFFF'} }}
                                     label="Select Category"
                                     value={category}
                                     onChange={(e) => setCategory(e.target.value)}

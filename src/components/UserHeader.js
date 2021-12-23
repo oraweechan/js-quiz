@@ -22,7 +22,7 @@ function UserHeader (props) {
         justifyContent="space-between"
         alignItems="center">
           <Typography > Welcome, {props.displayName} </Typography>
-          <Button href="/quizJS" onClick={logout}> Sign Out </Button>
+          <Button  href="/quizJS" onClick={logout}> Sign Out </Button>
         </Grid>
         </>
 

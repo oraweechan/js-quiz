@@ -31,7 +31,7 @@ function SignIn() {
   return (
     <>
       <Grid container direction="column">
-          <Typography fontSize={18}>Sign in </Typography>
+          <Typography  fontSize={18}>Sign in </Typography>
           <Grid container 
           direction="column"
           justifyContent="space-evenly"

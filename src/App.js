@@ -20,6 +20,7 @@ const theme = createTheme({
     primary: {
       main: '#D06F4D'
     },
+   
     text: {
       primary: '#FFFFFF'
     },

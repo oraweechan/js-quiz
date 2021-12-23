@@ -84,7 +84,44 @@ function Question(props) {
             </div>
           </Grid>
         </Grid>
-        
+
+        {/* <Grid  container spacing={1}>
+          
+        <div className="controls">
+          <Button
+            href="/quizJS/"
+            variant="contained"
+            color="secondary"
+            size="large"
+            style={{ width: 185 }}
+            onClick={() => handleQuit()}
+          >
+            Quit
+          </Button>
+
+          {props.currQues > props.questions.length - 2 && selected ? (
+            <ResultModal
+              questions={props.questions}
+              score={props.score}
+              setScore={props.setScore}
+            />
+          ) : (
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              style={{ width: 185 }}
+              onClick={handleNext}
+            >
+              {props.currQues > props.questions.length - 2
+                ? "Submit"
+                : "Next Question"}
+            </Button>
+          )}
+        </div>
+
+        </Grid>
+         */}
 
         <div className="controls">
           <Button
