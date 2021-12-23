@@ -18,8 +18,11 @@ import { Paper } from "@mui/material";
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#D06F4D'
+      main: '#17868E'
     },
+    // secondary: {
+    //   main: '#6D6109'
+    // },
    
     text: {
       primary: '#FFFFFF'

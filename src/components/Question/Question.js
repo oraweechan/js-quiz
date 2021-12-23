@@ -47,10 +47,10 @@ function Question(props) {
     <div>
       <div className="quizInfo">
             
-            <Typography style={{color:'#826E00'}} textAlign="left" fontSize={20}>
+            <Typography style={{color:'#826E00'}} textAlign="left" fontSize={17}>
         Question {props.currQues + 1}
       </Typography>
-      <Typography style={{color:'#826E00',}} fontSize={18}>Score: {props.score}</Typography>
+      <Typography style={{color:'#826E00',}} fontSize={17}>Score: {props.score}</Typography>
             
           </div>
       {/* <Typography textAlign="left" fontSize={25}>
@@ -59,12 +59,13 @@ function Question(props) {
       <div className="singleQuestion">
         {error && <ErrorMessage>{error}</ErrorMessage>}
 
-        <Grid container spacing={3}>
+        <Grid container  spacing={3}>
           <Grid item xs={12}>
-            <Typography fontSize={20}>
+            <Typography style={{padding:15}} fontSize={19}>
               {props.questions[props.currQues].question}
             </Typography>
           </Grid>
+         
           <Grid item xs={12}>
             <div className="options">
               {props?.quizOptions?.map((options) => (
@@ -84,44 +85,6 @@ function Question(props) {
             </div>
           </Grid>
         </Grid>
-
-        {/* <Grid  container spacing={1}>
-          
-        <div className="controls">
-          <Button
-            href="/quizJS/"
-            variant="contained"
-            color="secondary"
-            size="large"
-            style={{ width: 185 }}
-            onClick={() => handleQuit()}
-          >
-            Quit
-          </Button>
-
-          {props.currQues > props.questions.length - 2 && selected ? (
-            <ResultModal
-              questions={props.questions}
-              score={props.score}
-              setScore={props.setScore}
-            />
-          ) : (
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              style={{ width: 185 }}
-              onClick={handleNext}
-            >
-              {props.currQues > props.questions.length - 2
-                ? "Submit"
-                : "Next Question"}
-            </Button>
-          )}
-        </div>
-
-        </Grid>
-         */}
 
         <div className="controls">
           <Button

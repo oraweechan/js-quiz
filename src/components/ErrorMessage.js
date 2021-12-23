@@ -4,9 +4,10 @@ const ErrorMessage = ({ children }) => {
       <div
          style={{
            width: "100%",
-           padding: 10,
-           marginBottom: 10,
+           padding: 5,
            borderRadius: 4,
+           margin:5,
+           marginTop: 20,
            backgroundColor: "orangered",
            textAlign: "center",
            color: "white",
