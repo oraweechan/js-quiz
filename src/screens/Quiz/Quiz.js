@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { Button, CircularProgress, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import { CircularProgress } from "@mui/material";
 import "./Quiz.css";
 import Question from "../../components/Question/Question";
 
@@ -23,11 +22,8 @@ function Quiz(props) {
     <div className="Quiz">
       {quizOptions ? (
         <>
-          {/* <div className="quizInfo">
-            <span>Score: {props.score}</span>
-          </div> */}
-
           <Question
+            user={props.user}
             currQues={currQues}
             setCurrQues={setCurrQues}
             questions={props.questions}

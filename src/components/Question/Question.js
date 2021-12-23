@@ -1,18 +1,14 @@
 import { useState } from "react";
 import ErrorMessage from "../ErrorMessage";
-import { Button, Grid, Paper, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Button, Grid, Typography } from "@mui/material";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/utils";
 import "./Question.css";
-import { Container, Row, Col } from "react-bootstrap";
-import { Box } from "@mui/system";
 import ResultModal from "../ResultModal";
 
 function Question(props) {
   const [selected, setSelected] = useState();
   const [error, setError] = useState(false);
-  const navigate = useNavigate();
 
   const handleSelect = (options) => {
     if (selected === options && selected === props.correct) return "select";
@@ -100,6 +96,7 @@ function Question(props) {
 
           {props.currQues > props.questions.length - 2 && selected ? (
             <ResultModal
+              user={props.user}
               questions={props.questions}
               score={props.score}
               setScore={props.setScore}

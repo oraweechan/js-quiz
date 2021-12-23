@@ -1,20 +1,9 @@
 import { Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { signOut } from "firebase/auth";
-import { auth } from "../firebase/utils";
 import UserHeader from "./UserHeader";
 import "./Header.css";
 
 
 function Header (props) {
-    const navigate = useNavigate();
-
-    // const logout = async () => {
-    //   await signOut(auth);
-    //   navigate("/quizJS/");
-    // };
-
-    
 
     return(
         <>

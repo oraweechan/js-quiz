@@ -4,6 +4,14 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useNavigate } from "react-router";
+import {
+    doc,
+    updateDoc,
+    arrayUnion,
+    Timestamp,
+  } from "firebase/firestore";
+  import { db } from "../firebase/utils";
+
 
 const style = {
   position: "absolute",
@@ -18,15 +26,27 @@ const style = {
 };
 
 export default function ResultModal(props) {
+    console.log(props)
   const navigate = useNavigate();
 
-  const handleSubmit = async () => {
-    props.setScore(0);
-    navigate("/quizJS/home");
-  };
+//   const handleSubmit = async () => {
+//     props.setScore(0);
+//     navigate("/quizJS/home");
+//   };
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const handleSubmit = async () => {
+    const userDoc = doc(db, "users", props.user.uid);
+    await updateDoc(userDoc, {
+      results: arrayUnion(props.score),
+      createdAt: Timestamp.fromDate(new Date()),
+    });
+    props.setScore(0);
+    navigate("/quizJS/home");
+  };
+
 
   return (
     <div>

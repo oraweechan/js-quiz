@@ -15,7 +15,7 @@ import { db } from "../../firebase/utils";
 import "./Result.css";
 
 const Result = (props) => {
-  console.log(props.questions.length);
+  // console.log(props.questions.length);
   const navigate = useNavigate();
   const [results, setResult] = useState([]);
 
@@ -47,13 +47,10 @@ const Result = (props) => {
 
   return (
     <div className="result">
-      {/* <span className="title"> */}
-        <Typography>  You scored {props.score} out of {props.questions.length}! </Typography>
-        {/* Final Score : {props.score} / {props.questions.length} */}
-      {/* </span> */}
-      <div className="resultInfo">
-        {/* {results && results.map((result) => <p key={result}>{result}</p>)} */}
-      </div>
+      <Typography>
+        {" "}
+        You scored {props.score} out of {props.questions.length}!{" "}
+      </Typography>
       <Button
         variant="contained"
         color="secondary"

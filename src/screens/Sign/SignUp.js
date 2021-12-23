@@ -1,7 +1,5 @@
 import Button from "@mui/material/Button";
-import { Container, Row, Col } from "react-bootstrap";
 import { Typography } from "@mui/material";
-import { Paper } from "@mui/material";
 import { Form } from "react-bootstrap";
 import { TextField, Grid } from "@mui/material";
 import React, { useState } from "react";
@@ -81,33 +79,20 @@ function SignUp() {
             textAlign="center"
           >
             <Grid item sx={{ m: 2 }}>
-              <Button
-                variant="contained"
-                size="large"
-                type="submit"
-              >
+              <Button variant="contained" size="large" type="submit">
                 Submit
               </Button>
-
-              {/* <button onClick={handleSubmit}> Sign In</button> */}
             </Grid>
 
             <Grid item sx={{ m: 5 }}>
               <Typography>Already have an account?</Typography>
-              <Button
-                onClick={handleClick}
-                // style={{ backgroundColor: "#1A76D2" }}
-                variant="contained"
-                size="medium"
-              >
+              <Button onClick={handleClick} variant="contained" size="medium">
                 Sign In
               </Button>
             </Grid>
           </Grid>
         </Grid>
       </Form>
-
-      
     </>
   );
 }

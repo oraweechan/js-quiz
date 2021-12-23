@@ -12,28 +12,26 @@ import Home from "./screens/Home/Home";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Header from "./components/Header";
 import "./App.css";
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { Paper } from "@mui/material";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#17868E'
+      main: "#17868E",
     },
     secondary: {
-      main: '#c47d96'
+      main: "#c47d96",
     },
-   
+
     text: {
-      primary: '#FFFFFF'
+      primary: "#FFFFFF",
     },
     background: {
-      default: '#153544',
-      paper:'#153544'
-    }
-
-  }
-})
+      default: "#153544",
+      paper: "#153544",
+    },
+  },
+});
 
 function App() {
   const [user] = useAuthState(auth);
@@ -77,52 +75,42 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Container maxWidth="sm">
-      <Box 
-      sx={{
-       
-      }}
-      textAlign="center" mt={2}>
-        
-        <Header displayName={displayName} user={user} />
-        <Routes>
-          <Route path="/quizJS/" element={<SignIn />} />
-          <Route path="/quizJS/signup" element={<SignUp />} />
-          <Route
-            path="/quizJS/home"
-            element={<Home apiCall={apiCall} questions={questions} />}
-          />
-          <Route
-            path="/quizJS/play"
-            element={
-              <Quiz
-                user={user}
-                score={score}
-                setScore={setScore}
-                setQuestions={setQuestions}
-                questions={questions}
-              />
-            }
-          />
-          <Route
-            path="/quizJS/results"
-            element={
-              <Result
-                questions={questions}
-                user={user}
-                score={score}
-                setScore={setScore}
-              />
-            }
-          />
-        </Routes>
-        {/* <Footer/> */}
-
-        
-      </Box>
-    </Container>
-
+        <Box sx={{}} textAlign="center" mt={2}>
+          <Header displayName={displayName} user={user} />
+          <Routes>
+            <Route path="/quizJS/" element={<SignIn />} />
+            <Route path="/quizJS/signup" element={<SignUp />} />
+            <Route
+              path="/quizJS/home"
+              element={<Home apiCall={apiCall} questions={questions} />}
+            />
+            <Route
+              path="/quizJS/play"
+              element={
+                <Quiz
+                  user={user}
+                  score={score}
+                  setScore={setScore}
+                  setQuestions={setQuestions}
+                  questions={questions}
+                />
+              }
+            />
+            <Route
+              path="/quizJS/results"
+              element={
+                <Result
+                  questions={questions}
+                  user={user}
+                  score={score}
+                  setScore={setScore}
+                />
+              }
+            />
+          </Routes>
+        </Box>
+      </Container>
     </ThemeProvider>
-    
   );
 }
 
